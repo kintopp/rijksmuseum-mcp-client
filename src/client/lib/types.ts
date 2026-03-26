@@ -35,11 +35,11 @@ export interface AvailableModel {
 }
 
 export const AVAILABLE_MODELS: AvailableModel[] = [
-  { id: 'anthropic/claude-sonnet-4.6', label: 'Claude Sonnet 4.6' },
   { id: 'mistralai/mistral-large-2512', label: 'Mistral Large 3' },
+  { id: 'anthropic/claude-sonnet-4.6', label: 'Claude Sonnet 4.6' },
 ];
 
-export const DEFAULT_MODEL = 'anthropic/claude-sonnet-4.6';
+export const DEFAULT_MODEL = 'mistralai/mistral-large-2512';
 
 const REGION_RE = /pct:([\d.]+),([\d.]+),([\d.]+),([\d.]+)/;
 
