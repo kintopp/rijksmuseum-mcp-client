@@ -52,6 +52,7 @@ Important:
 const ALLOWED_MODELS = new Set([
   'anthropic/claude-sonnet-4.6',
   'mistralai/mistral-large-2512',
+  'mistralai/mistral-large-3-2512',
 ]);
 
 const ACCESS_PASSWORD = 'sk-c-5';
