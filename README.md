@@ -4,7 +4,7 @@ Web-based chat interface for exploring the [Rijksmuseum collection](https://www.
 
 ## How it works
 
-An LLM (Mistral Large 3 or Claude Sonnet 4.6) uses 13 MCP tools to search, filter, and retrieve artworks from the Rijksmuseum's ~830,000-object collection. When an artwork is opened, the IIIF image loads directly in the viewer. Users can zoom, pan, rotate, select regions, and ask the LLM about what they see.
+An LLM (Mistral Large 3) uses 13 MCP tools to search, filter, and retrieve artworks from the Rijksmuseum's ~830,000-object collection. When an artwork is opened, the IIIF image loads directly in the viewer. Users can zoom, pan, rotate, select regions, and ask the LLM about what they see.
 
 ```
 Browser ──→ POST /api/chat ──→ OpenRouter (LLM streaming)

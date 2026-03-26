@@ -50,7 +50,7 @@ Important:
 </tool_guidance>`;
 
 const ALLOWED_MODELS = new Set([
-  'anthropic/claude-sonnet-4.6',
+  // 'anthropic/claude-sonnet-4.6',
   'mistralai/mistral-large-2512',
 ]);
 
