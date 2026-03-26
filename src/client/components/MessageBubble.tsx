@@ -1,5 +1,7 @@
 import type { Message } from 'ai';
 import { useState } from 'react';
+import Markdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 
 interface Props {
   message: Message;
@@ -9,7 +11,11 @@ export function MessageBubble({ message }: Props) {
   return (
     <div className={`message message-${message.role}`}>
       <div className="message-role">{message.role === 'user' ? 'You' : 'Assistant'}</div>
-      {message.content && <div className="message-text">{message.content}</div>}
+      {message.content && (
+        <div className="message-text">
+          <Markdown remarkPlugins={[remarkGfm]}>{message.content}</Markdown>
+        </div>
+      )}
       {message.parts?.map((part, i) => {
         if (part.type === 'tool-invocation') {
           return <ToolInvocation key={i} invocation={part} />;

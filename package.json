@@ -13,13 +13,15 @@
     "start": "node --env-file=.env dist/index.js"
   },
   "dependencies": {
-    "ai": "^4",
     "@ai-sdk/openai-compatible": "^0.2",
     "@ai-sdk/react": "^1",
+    "ai": "^4",
     "express": "^5",
     "openseadragon": "^6",
     "react": "^19",
-    "react-dom": "^19"
+    "react-dom": "^19",
+    "react-markdown": "^10.1.0",
+    "remark-gfm": "^4.0.1"
   },
   "devDependencies": {
     "@types/express": "^5",
