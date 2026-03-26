@@ -9,8 +9,8 @@
     "dev": "concurrently -n client,server -c blue,green \"vite\" \"node --env-file=.env --import tsx src/server/index.ts\"",
     "dev:client": "vite",
     "dev:server": "node --env-file=.env --import tsx src/server/index.ts",
-    "build": "vite build && tsc -p tsconfig.node.json",
-    "start": "node --env-file=.env dist/index.js"
+    "build": "vite build && tsc -p tsconfig.node.json && cp -r src/server/data dist/data",
+    "start": "node dist/index.js"
   },
   "dependencies": {
     "@ai-sdk/openai-compatible": "^0.2",
