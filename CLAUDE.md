@@ -1,5 +1,7 @@
 # CLAUDE.md
 
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+
 ## What This Is
 
 A web-based MCP client for the [Rijksmuseum MCP+ server](https://github.com/kintopp/rijksmuseum-mcp-plus). Split-pane UI: OpenSeadragon viewer (left, 2/3) + chat interface (right, 1/3). Users bring their own LLM via OpenRouter.
