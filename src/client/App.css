@@ -479,6 +479,14 @@ body {
   padding: 0;
 }
 
+.message-text a {
+  color: #7bb8f0;
+}
+
+.message-text a:visited {
+  color: #7bb8f0;
+}
+
 .message-text ul,
 .message-text ol {
   margin: 4px 0;
