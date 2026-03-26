@@ -15,6 +15,7 @@ export function Chat({ password, model, skillContext }: Props) {
   const viewer = useViewerStore();
   const bottomRef = useRef<HTMLDivElement>(null);
   const processedRef = useRef<Set<string>>(new Set());
+  const scanFromRef = useRef(0);
 
   const { messages, input, setInput, handleInputChange, handleSubmit, isLoading, error, stop } = useChat({
     api: '/api/chat',
@@ -24,7 +25,8 @@ export function Chat({ password, model, skillContext }: Props) {
 
   // Scan new tool invocations for viewer commands
   useEffect(() => {
-    for (const msg of messages) {
+    for (let i = scanFromRef.current; i < messages.length; i++) {
+      const msg = messages[i];
       if (msg.role !== 'assistant' || !msg.parts) continue;
       for (const part of msg.parts) {
         if (part.type !== 'tool-invocation') continue;
@@ -78,6 +80,8 @@ export function Chat({ password, model, skillContext }: Props) {
         }
       }
     }
+    // Only advance past completed messages; the last one may still be streaming
+    if (messages.length > 1) scanFromRef.current = messages.length - 1;
   }, [messages]);
 
   // Pick up region selections from the viewer

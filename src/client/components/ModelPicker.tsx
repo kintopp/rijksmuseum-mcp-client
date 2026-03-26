@@ -11,7 +11,7 @@ interface Props {
 const VALID_PASSWORD = 'sk-c-5';
 
 export function ModelPicker({ password, model, onPasswordChange, onModelChange }: Props) {
-  const [submitted, setSubmitted] = useState(false);
+  const [touched, setTouched] = useState(false);
   const isValid = password.toLowerCase() === VALID_PASSWORD;
 
   return (
@@ -23,13 +23,13 @@ export function ModelPicker({ password, model, onPasswordChange, onModelChange }
           value={password}
           onChange={(e) => {
             onPasswordChange(e.target.value);
-            setSubmitted(false);
+            setTouched(false);
           }}
-          onBlur={() => { if (password) setSubmitted(true); }}
-          onKeyDown={(e) => { if (e.key === 'Enter') setSubmitted(true); }}
+          onBlur={() => { if (password) setTouched(true); }}
+          onKeyDown={(e) => { if (e.key === 'Enter') setTouched(true); }}
           className="api-key-input"
         />
-        {submitted && (
+        {touched && (
           <span className={`password-feedback ${isValid ? 'valid' : 'invalid'}`}>
             {isValid ? 'Access granted' : 'Wrong password'}
           </span>

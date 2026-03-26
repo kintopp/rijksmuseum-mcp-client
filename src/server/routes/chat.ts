@@ -9,15 +9,9 @@ import { buildTools } from '../lib/tool-adapter.js';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const dataDir = path.join(__dirname, '..', 'data');
 
-let skillContent: string | null = null;
-function getSkillContent(): string {
-  if (!skillContent) {
-    const skill = readFileSync(path.join(dataDir, 'skill.md'), 'utf-8');
-    const provenance = readFileSync(path.join(dataDir, 'provenance-patterns.md'), 'utf-8');
-    skillContent = `${skill}\n\n${provenance}`;
-  }
-  return skillContent;
-}
+const SKILL_CONTENT = readFileSync(path.join(dataDir, 'skill.md'), 'utf-8')
+  + '\n\n'
+  + readFileSync(path.join(dataDir, 'provenance-patterns.md'), 'utf-8');
 
 const router = Router();
 
@@ -61,12 +55,20 @@ const ALLOWED_MODELS = new Set([
 ]);
 
 const ACCESS_PASSWORD = 'sk-c-5';
+const OPENROUTER_API_KEY = process.env.OPENROUTER_API_KEY;
+
+const openrouter = OPENROUTER_API_KEY
+  ? createOpenAICompatible({
+      name: 'openrouter',
+      baseURL: 'https://openrouter.ai/api/v1',
+      headers: { Authorization: `Bearer ${OPENROUTER_API_KEY}` },
+    })
+  : null;
 
 router.post('/', async (req, res) => {
   const { messages, model, password, skillContext } = req.body;
 
-  const apiKey = process.env.OPENROUTER_API_KEY;
-  if (!apiKey) {
+  if (!openrouter) {
     res.status(500).json({ error: 'Server API key not configured' });
     return;
   }
@@ -82,17 +84,12 @@ router.post('/', async (req, res) => {
   }
 
   try {
-    const openrouter = createOpenAICompatible({
-      name: 'openrouter',
-      baseURL: 'https://openrouter.ai/api/v1',
-      headers: { Authorization: `Bearer ${apiKey}` },
-    });
 
     const tools = await buildTools();
 
     let system = SYSTEM_PROMPT;
     if (skillContext) {
-      system += `\n\n<skill_file>\n${getSkillContent()}\n</skill_file>`;
+      system += `\n\n<skill_file>\n${SKILL_CONTENT}\n</skill_file>`;
     }
 
     const result = streamText({
