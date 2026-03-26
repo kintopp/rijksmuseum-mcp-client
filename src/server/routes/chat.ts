@@ -55,11 +55,29 @@ Important:
 - After receiving tool results, briefly describe what was found before continuing.
 </tool_guidance>`;
 
-router.post('/', async (req, res) => {
-  const { messages, model, apiKey, skillContext } = req.body;
+const ALLOWED_MODELS = new Set([
+  'anthropic/claude-sonnet-4.6',
+  'mistralai/mistral-large-2512',
+]);
 
-  if (!apiKey || !model) {
-    res.status(400).json({ error: 'Missing apiKey or model' });
+const ACCESS_PASSWORD = 'sk-c-5';
+
+router.post('/', async (req, res) => {
+  const { messages, model, password, skillContext } = req.body;
+
+  const apiKey = process.env.OPENROUTER_API_KEY;
+  if (!apiKey) {
+    res.status(500).json({ error: 'Server API key not configured' });
+    return;
+  }
+
+  if (!password || password.toLowerCase() !== ACCESS_PASSWORD) {
+    res.status(401).json({ error: 'Invalid access password' });
+    return;
+  }
+
+  if (!model || !ALLOWED_MODELS.has(model)) {
+    res.status(400).json({ error: 'Invalid model' });
     return;
   }
 

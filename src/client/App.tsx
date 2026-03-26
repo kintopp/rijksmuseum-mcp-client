@@ -7,13 +7,13 @@ import { DEFAULT_MODEL } from './lib/types.js';
 
 export function App() {
   const viewerStore = useViewerStoreProvider();
-  const [apiKey, setApiKey] = useState(() => localStorage.getItem('openrouter-api-key') ?? '');
+  const [password, setPassword] = useState(() => localStorage.getItem('access-password') ?? '');
   const [model, setModel] = useState(() => localStorage.getItem('openrouter-model') ?? DEFAULT_MODEL);
   const [skillContext, setSkillContext] = useState(() => localStorage.getItem('skill-context') === 'true');
 
-  const handleApiKeyChange = (key: string) => {
-    setApiKey(key);
-    localStorage.setItem('openrouter-api-key', key);
+  const handlePasswordChange = (pw: string) => {
+    setPassword(pw);
+    localStorage.setItem('access-password', pw);
   };
 
   const handleModelChange = (m: string) => {
@@ -29,9 +29,9 @@ export function App() {
         </div>
         <div className="chat-pane">
           <ModelPicker
-            apiKey={apiKey}
+            password={password}
             model={model}
-            onApiKeyChange={handleApiKeyChange}
+            onPasswordChange={handlePasswordChange}
             onModelChange={handleModelChange}
           />
           <div className="skill-toggle">
@@ -56,7 +56,7 @@ export function App() {
               View
             </button>
           </div>
-          <Chat apiKey={apiKey} model={model} skillContext={skillContext} />
+          <Chat password={password} model={model} skillContext={skillContext} />
         </div>
       </div>
     </ViewerProvider>

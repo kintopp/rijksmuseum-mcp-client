@@ -4,21 +4,21 @@ import { useViewerStore } from '../hooks/useViewerStore.js';
 import { MessageBubble } from './MessageBubble.js';
 
 interface Props {
-  apiKey: string;
+  password: string;
   model: string;
   skillContext: boolean;
 }
 
 const REGION_RE = /pct:[\d.]+,[\d.]+,[\d.]+,[\d.]+/;
 
-export function Chat({ apiKey, model, skillContext }: Props) {
+export function Chat({ password, model, skillContext }: Props) {
   const viewer = useViewerStore();
   const bottomRef = useRef<HTMLDivElement>(null);
   const processedRef = useRef<Set<string>>(new Set());
 
   const { messages, input, setInput, handleInputChange, handleSubmit, isLoading, error, stop } = useChat({
     api: '/api/chat',
-    body: { model, apiKey, skillContext },
+    body: { model, password, skillContext },
     maxSteps: 10,
   });
 
@@ -92,7 +92,7 @@ export function Chat({ apiKey, model, skillContext }: Props) {
     bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages]);
 
-  const canSend = apiKey.length > 0 && !isLoading;
+  const canSend = password.length > 0 && !isLoading;
 
   return (
     <div className="chat">
@@ -123,7 +123,7 @@ export function Chat({ apiKey, model, skillContext }: Props) {
           type="text"
           value={input}
           onChange={handleInputChange}
-          placeholder={apiKey ? 'Ask about the Rijksmuseum collection...' : 'Enter an API key to start'}
+          placeholder={password ? 'Ask about the Rijksmuseum collection...' : 'Enter the access password to start'}
           disabled={!canSend && !isLoading}
           className="chat-input"
         />

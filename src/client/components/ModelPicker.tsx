@@ -1,40 +1,39 @@
 import { useState } from 'react';
-import { CURATED_MODELS } from '../lib/types.js';
+import { AVAILABLE_MODELS } from '../lib/types.js';
 
 interface Props {
-  apiKey: string;
+  password: string;
   model: string;
-  onApiKeyChange: (key: string) => void;
+  onPasswordChange: (password: string) => void;
   onModelChange: (model: string) => void;
 }
 
-const TIER_LABELS: Record<string, string> = {
-  free: 'Free',
-  budget: 'Budget',
-  mid: 'Mid-tier',
-  premium: 'Premium',
-};
+const VALID_PASSWORD = 'sk-c-5';
 
-export function ModelPicker({ apiKey, model, onApiKeyChange, onModelChange }: Props) {
-  const [showKey, setShowKey] = useState(false);
+export function ModelPicker({ password, model, onPasswordChange, onModelChange }: Props) {
+  const [submitted, setSubmitted] = useState(false);
+  const isValid = password.toLowerCase() === VALID_PASSWORD;
 
   return (
     <div className="model-picker">
       <div className="model-picker-row">
         <input
-          type={showKey ? 'text' : 'password'}
-          placeholder="OpenRouter API key"
-          value={apiKey}
-          onChange={(e) => onApiKeyChange(e.target.value)}
+          type="password"
+          placeholder="Enter access password"
+          value={password}
+          onChange={(e) => {
+            onPasswordChange(e.target.value);
+            setSubmitted(false);
+          }}
+          onBlur={() => { if (password) setSubmitted(true); }}
+          onKeyDown={(e) => { if (e.key === 'Enter') setSubmitted(true); }}
           className="api-key-input"
         />
-        <button
-          onClick={() => setShowKey(!showKey)}
-          className="toggle-key-btn"
-          title={showKey ? 'Hide key' : 'Show key'}
-        >
-          {showKey ? 'Hide' : 'Show'}
-        </button>
+        {submitted && (
+          <span className={`password-feedback ${isValid ? 'valid' : 'invalid'}`}>
+            {isValid ? 'Access granted' : 'Wrong password'}
+          </span>
+        )}
       </div>
       <div className="model-picker-row">
         <select
@@ -42,14 +41,10 @@ export function ModelPicker({ apiKey, model, onApiKeyChange, onModelChange }: Pr
           onChange={(e) => onModelChange(e.target.value)}
           className="model-select"
         >
-          {Object.entries(TIER_LABELS).map(([tier, label]) => (
-            <optgroup key={tier} label={label}>
-              {CURATED_MODELS.filter((m) => m.tier === tier).map((m) => (
-                <option key={m.id} value={m.id}>
-                  {m.label}
-                </option>
-              ))}
-            </optgroup>
+          {AVAILABLE_MODELS.map((m) => (
+            <option key={m.id} value={m.id}>
+              {m.label}
+            </option>
           ))}
         </select>
       </div>

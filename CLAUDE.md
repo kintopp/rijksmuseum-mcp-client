@@ -118,10 +118,12 @@ The MCP server returns tool schemas as JSON Schema (derived from Zod). To pass t
 
 The `description` field from MCP maps directly. The `inputSchema` becomes `parameters`.
 
-## API Key Handling
+## Authentication
 
-- OpenRouter API key: sent per-request from browser → backend → OpenRouter. Never stored server-side.
-- `localStorage` on the client for persistence across page reloads.
+- OpenRouter API key: stored server-side via `OPENROUTER_API_KEY` env var. Never exposed to the client.
+- Client access: users enter a password ("sk-c-5", case-insensitive) which is validated server-side before proxying LLM requests.
+- Password persisted in `localStorage` for convenience across reloads.
+- Only two models are allowed: Claude Sonnet 4.6 (default) and Mistral Large.
 - No authentication on the MCP server (it's open).
 
 ## Build & Run
