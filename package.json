@@ -1,0 +1,30 @@
+{
+  "name": "rijksmuseum-mcp-client",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "license": "MIT",
+  "description": "Web-based MCP client for the Rijksmuseum MCP+ server — split-pane OpenSeadragon viewer + chat with any tool-use-capable LLM via OpenRouter",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "start": "node dist/server.js"
+  },
+  "dependencies": {
+    "ai": "^4",
+    "@ai-sdk/openai-compatible": "^0.2",
+    "@ai-sdk/react": "^1",
+    "express": "^5",
+    "openseadragon": "^6",
+    "react": "^19",
+    "react-dom": "^19"
+  },
+  "devDependencies": {
+    "@types/express": "^5",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "@vitejs/plugin-react": "^4",
+    "typescript": "^5",
+    "vite": "^6"
+  }
+}
