@@ -68,7 +68,7 @@ Configured for [Railway](https://railway.com). Set `OPENROUTER_API_KEY` as an en
 
 ## Access
 
-Password-protected. See [kintopp/rijksmuseum-mcp-plus-offline#190](https://github.com/kintopp/rijksmuseum-mcp-plus-offline/issues/190) for context.
+Password-protected.
 
 ## License
 
