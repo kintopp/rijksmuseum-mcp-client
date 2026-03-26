@@ -6,18 +6,19 @@ import { MessageBubble } from './MessageBubble.js';
 interface Props {
   apiKey: string;
   model: string;
+  skillContext: boolean;
 }
 
 const REGION_RE = /pct:[\d.]+,[\d.]+,[\d.]+,[\d.]+/;
 
-export function Chat({ apiKey, model }: Props) {
+export function Chat({ apiKey, model, skillContext }: Props) {
   const viewer = useViewerStore();
   const bottomRef = useRef<HTMLDivElement>(null);
   const processedRef = useRef<Set<string>>(new Set());
 
-  const { messages, input, setInput, handleInputChange, handleSubmit, isLoading, error } = useChat({
+  const { messages, input, setInput, handleInputChange, handleSubmit, isLoading, error, stop } = useChat({
     api: '/api/chat',
-    body: { model, apiKey },
+    body: { model, apiKey, skillContext },
     maxSteps: 10,
   });
 
@@ -126,9 +127,15 @@ export function Chat({ apiKey, model }: Props) {
           disabled={!canSend && !isLoading}
           className="chat-input"
         />
-        <button type="submit" disabled={!canSend || !input.trim()} className="chat-send">
-          Send
-        </button>
+        {isLoading ? (
+          <button type="button" onClick={stop} className="chat-send chat-stop">
+            Stop
+          </button>
+        ) : (
+          <button type="submit" disabled={!canSend || !input.trim()} className="chat-send">
+            Send
+          </button>
+        )}
       </form>
     </div>
   );

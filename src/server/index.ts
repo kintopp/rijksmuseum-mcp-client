@@ -12,6 +12,15 @@ app.use('/api/chat', chatRouter);
 app.use('/api/tools', toolsRouter);
 app.use('/api/mcp', mcpRouter);
 
+// Serve skill files as plain text
+const dataDir = path.join(path.dirname(fileURLToPath(import.meta.url)), 'data');
+app.get('/api/skill/main', (_req, res) => {
+  res.sendFile(path.join(dataDir, 'skill.md'), { headers: { 'Content-Type': 'text/plain; charset=utf-8' } });
+});
+app.get('/api/skill/provenance', (_req, res) => {
+  res.sendFile(path.join(dataDir, 'provenance-patterns.md'), { headers: { 'Content-Type': 'text/plain; charset=utf-8' } });
+});
+
 // Production: serve the Vite-built SPA
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const clientDir = path.join(__dirname, 'client');

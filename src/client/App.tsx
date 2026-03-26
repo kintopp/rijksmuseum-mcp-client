@@ -9,6 +9,7 @@ export function App() {
   const viewerStore = useViewerStoreProvider();
   const [apiKey, setApiKey] = useState(() => localStorage.getItem('openrouter-api-key') ?? '');
   const [model, setModel] = useState(() => localStorage.getItem('openrouter-model') ?? DEFAULT_MODEL);
+  const [skillContext, setSkillContext] = useState(() => localStorage.getItem('skill-context') === 'true');
 
   const handleApiKeyChange = (key: string) => {
     setApiKey(key);
@@ -33,7 +34,29 @@ export function App() {
             onApiKeyChange={handleApiKeyChange}
             onModelChange={handleModelChange}
           />
-          <Chat apiKey={apiKey} model={model} />
+          <div className="skill-toggle">
+            <label>
+              <input
+                type="checkbox"
+                checked={skillContext}
+                onChange={(e) => {
+                  setSkillContext(e.target.checked);
+                  localStorage.setItem('skill-context', String(e.target.checked));
+                }}
+              />
+              Use SKILLS.md file
+            </label>
+            <button
+              className="skill-view-btn"
+              onClick={() => {
+                window.open('/api/skill/main', '_blank');
+                window.open('/api/skill/provenance', '_blank');
+              }}
+            >
+              View
+            </button>
+          </div>
+          <Chat apiKey={apiKey} model={model} skillContext={skillContext} />
         </div>
       </div>
     </ViewerProvider>
