@@ -43,20 +43,31 @@ export function Viewer() {
   useEffect(() => {
     const v = viewerRef.current;
     if (!v || !pendingNavigation) return;
+
+    // Convert pct:x,y,w,h to OSD viewport rect using image dimensions
+    const pctToViewport = (region: string): OpenSeadragon.Rect | null => {
+      const r = parseRegion(region);
+      if (!r) return null;
+      const size = v.world.getItemAt(0)?.getContentSize();
+      if (!size) return null;
+      const imgRect = new OpenSeadragon.Rect(r.x * size.x, r.y * size.y, r.w * size.x, r.h * size.y);
+      return v.viewport.imageToViewportRectangle(imgRect);
+    };
+
     if (pendingNavigation.region) {
-      const r = parseRegion(pendingNavigation.region);
-      if (r) v.viewport.fitBounds(new OpenSeadragon.Rect(r.x, r.y, r.w, r.h));
+      const rect = pctToViewport(pendingNavigation.region);
+      if (rect) v.viewport.fitBounds(rect);
     }
     if (pendingNavigation.overlays) {
       v.clearOverlays();
       for (const ol of pendingNavigation.overlays) {
-        const r = parseRegion(ol.region);
-        if (!r) continue;
+        const rect = pctToViewport(ol.region);
+        if (!rect) continue;
         const el = document.createElement('div');
         el.className = 'viewer-overlay';
         el.style.border = `2px solid ${ol.color ?? '#ff0000'}`;
         if (ol.label) el.title = ol.label;
-        v.addOverlay({ element: el, location: new OpenSeadragon.Rect(r.x, r.y, r.w, r.h) });
+        v.addOverlay({ element: el, location: rect });
       }
     }
     clearNavigation();
@@ -98,14 +109,19 @@ export function Viewer() {
     const curX = e.clientX - rect.left;
     const curY = e.clientY - rect.top;
 
-    // Convert pixel coords to viewport coords, then to image percentage
-    const p1 = v.viewport.pointFromPixel(new OpenSeadragon.Point(Math.min(dragStart.x, curX), Math.min(dragStart.y, curY)));
-    const p2 = v.viewport.pointFromPixel(new OpenSeadragon.Point(Math.max(dragStart.x, curX), Math.max(dragStart.y, curY)));
+    // Convert screen pixels → viewport coords → image coords → percentages
+    const vp1 = v.viewport.pointFromPixel(new OpenSeadragon.Point(Math.min(dragStart.x, curX), Math.min(dragStart.y, curY)));
+    const vp2 = v.viewport.pointFromPixel(new OpenSeadragon.Point(Math.max(dragStart.x, curX), Math.max(dragStart.y, curY)));
+    const img1 = v.viewport.viewportToImageCoordinates(vp1);
+    const img2 = v.viewport.viewportToImageCoordinates(vp2);
 
-    const pctX = Math.max(0, p1.x * 100);
-    const pctY = Math.max(0, p1.y * 100);
-    const pctW = Math.max(1, (p2.x - p1.x) * 100);
-    const pctH = Math.max(1, (p2.y - p1.y) * 100);
+    const imgSize = v.world.getItemAt(0)?.getContentSize();
+    if (!imgSize) return;
+
+    const pctX = Math.max(0, (img1.x / imgSize.x) * 100);
+    const pctY = Math.max(0, (img1.y / imgSize.y) * 100);
+    const pctW = Math.max(1, ((img2.x - img1.x) / imgSize.x) * 100);
+    const pctH = Math.max(1, ((img2.y - img1.y) / imgSize.y) * 100);
 
     const region = `pct:${pctX.toFixed(1)},${pctY.toFixed(1)},${pctW.toFixed(1)},${pctH.toFixed(1)}`;
     selectRegion(region);
