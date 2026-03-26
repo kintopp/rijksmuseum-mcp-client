@@ -37,7 +37,6 @@ export interface CuratedModel {
 
 export const CURATED_MODELS: CuratedModel[] = [
   // Free
-  { id: 'openrouter/free', label: 'Free Models Router', tier: 'free' },
   { id: 'nvidia/nemotron-3-super-120b-a12b:free', label: 'Nemotron 3 Super 120B (free)', tier: 'free' },
   { id: 'qwen/qwen3-next-80b-a3b-instruct:free', label: 'Qwen3 Next 80B (free)', tier: 'free' },
   { id: 'mistralai/mistral-small-3.1-24b-instruct:free', label: 'Mistral Small 3.1 (free)', tier: 'free' },
@@ -56,10 +55,9 @@ export const CURATED_MODELS: CuratedModel[] = [
   { id: 'mistralai/mistral-large-2512', label: 'Mistral Large', tier: 'mid' },
   // Premium
   { id: 'anthropic/claude-opus-4.6', label: 'Claude Opus 4.6', tier: 'premium' },
-  { id: 'openai/gpt-5.4-pro', label: 'GPT-5.4 Pro', tier: 'premium' },
 ];
 
-export const DEFAULT_MODEL = 'openrouter/free';
+export const DEFAULT_MODEL = 'anthropic/claude-sonnet-4.6';
 
 const REGION_RE = /pct:([\d.]+),([\d.]+),([\d.]+),([\d.]+)/;
 

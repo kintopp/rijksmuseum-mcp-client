@@ -1,0 +1,512 @@
+[
+  {
+    "model": "openrouter/free",
+    "prompt": "Search for paintings by Vermeer",
+    "expectedTool": "search_artwork",
+    "toolCalled": "search_artwork",
+    "toolCallValid": true,
+    "toolExecOk": true,
+    "error": null,
+    "latencyMs": 4522
+  },
+  {
+    "model": "openrouter/free",
+    "prompt": "Show me The Night Watch by Rembrandt",
+    "expectedTool": "get_artwork_image",
+    "toolCalled": null,
+    "toolCallValid": false,
+    "toolExecOk": false,
+    "error": "No tool call — replied with text: TOOLCALL>[{\"name\": \"search_artwork\", \"arguments\": {\"title\": \"The Night Watch\", \"creator\": \"Rembrandt",
+    "latencyMs": 7582
+  },
+  {
+    "model": "openrouter/free",
+    "prompt": "How many paintings are in the collection?",
+    "expectedTool": "collection_stats",
+    "toolCalled": "collection_stats",
+    "toolCallValid": true,
+    "toolExecOk": true,
+    "error": null,
+    "latencyMs": 6077
+  },
+  {
+    "model": "nvidia/nemotron-3-super-120b-a12b:free",
+    "prompt": "Search for paintings by Vermeer",
+    "expectedTool": "search_artwork",
+    "toolCalled": "search_artwork",
+    "toolCallValid": true,
+    "toolExecOk": true,
+    "error": null,
+    "latencyMs": 5381
+  },
+  {
+    "model": "nvidia/nemotron-3-super-120b-a12b:free",
+    "prompt": "Show me The Night Watch by Rembrandt",
+    "expectedTool": "get_artwork_image",
+    "toolCalled": "search_artwork",
+    "toolCallValid": true,
+    "toolExecOk": true,
+    "error": null,
+    "latencyMs": 17290
+  },
+  {
+    "model": "nvidia/nemotron-3-super-120b-a12b:free",
+    "prompt": "How many paintings are in the collection?",
+    "expectedTool": "collection_stats",
+    "toolCalled": "collection_stats",
+    "toolCallValid": true,
+    "toolExecOk": true,
+    "error": null,
+    "latencyMs": 9030
+  },
+  {
+    "model": "qwen/qwen3-next-80b-a3b-instruct:free",
+    "prompt": "Search for paintings by Vermeer",
+    "expectedTool": "search_artwork",
+    "toolCalled": null,
+    "toolCallValid": false,
+    "toolExecOk": false,
+    "error": "HTTP 429: {\"error\":{\"message\":\"Provider returned error\",\"code\":429,\"metadata\":{\"raw\":\"qwen/qwen3-next-80b-a3b-instruct:free is temporarily rate-limited upstream. Please retry shortly, or add your own key to acc",
+    "latencyMs": 553
+  },
+  {
+    "model": "qwen/qwen3-next-80b-a3b-instruct:free",
+    "prompt": "Show me The Night Watch by Rembrandt",
+    "expectedTool": "get_artwork_image",
+    "toolCalled": null,
+    "toolCallValid": false,
+    "toolExecOk": false,
+    "error": "HTTP 429: {\"error\":{\"message\":\"Provider returned error\",\"code\":429,\"metadata\":{\"raw\":\"qwen/qwen3-next-80b-a3b-instruct:free is temporarily rate-limited upstream. Please retry shortly, or add your own key to acc",
+    "latencyMs": 436
+  },
+  {
+    "model": "qwen/qwen3-next-80b-a3b-instruct:free",
+    "prompt": "How many paintings are in the collection?",
+    "expectedTool": "collection_stats",
+    "toolCalled": null,
+    "toolCallValid": false,
+    "toolExecOk": false,
+    "error": "HTTP 429: {\"error\":{\"message\":\"Provider returned error\",\"code\":429,\"metadata\":{\"raw\":\"qwen/qwen3-next-80b-a3b-instruct:free is temporarily rate-limited upstream. Please retry shortly, or add your own key to acc",
+    "latencyMs": 375
+  },
+  {
+    "model": "mistralai/mistral-small-3.1-24b-instruct:free",
+    "prompt": "Search for paintings by Vermeer",
+    "expectedTool": "search_artwork",
+    "toolCalled": null,
+    "toolCallValid": false,
+    "toolExecOk": false,
+    "error": "HTTP 429: {\"error\":{\"message\":\"Provider returned error\",\"code\":429,\"metadata\":{\"raw\":\"mistralai/mistral-small-3.1-24b-instruct:free is temporarily rate-limited upstream. Please retry shortly, or add your own ke",
+    "latencyMs": 386
+  },
+  {
+    "model": "mistralai/mistral-small-3.1-24b-instruct:free",
+    "prompt": "Show me The Night Watch by Rembrandt",
+    "expectedTool": "get_artwork_image",
+    "toolCalled": null,
+    "toolCallValid": false,
+    "toolExecOk": false,
+    "error": "HTTP 429: {\"error\":{\"message\":\"Provider returned error\",\"code\":429,\"metadata\":{\"raw\":\"mistralai/mistral-small-3.1-24b-instruct:free is temporarily rate-limited upstream. Please retry shortly, or add your own ke",
+    "latencyMs": 377
+  },
+  {
+    "model": "mistralai/mistral-small-3.1-24b-instruct:free",
+    "prompt": "How many paintings are in the collection?",
+    "expectedTool": "collection_stats",
+    "toolCalled": null,
+    "toolCallValid": false,
+    "toolExecOk": false,
+    "error": "HTTP 429: {\"error\":{\"message\":\"Provider returned error\",\"code\":429,\"metadata\":{\"raw\":\"mistralai/mistral-small-3.1-24b-instruct:free is temporarily rate-limited upstream. Please retry shortly, or add your own ke",
+    "latencyMs": 405
+  },
+  {
+    "model": "qwen/qwen3-coder:free",
+    "prompt": "Search for paintings by Vermeer",
+    "expectedTool": "search_artwork",
+    "toolCalled": null,
+    "toolCallValid": false,
+    "toolExecOk": false,
+    "error": "HTTP 429: {\"error\":{\"message\":\"Provider returned error\",\"code\":429,\"metadata\":{\"raw\":\"qwen/qwen3-coder:free is temporarily rate-limited upstream. Please retry shortly, or add your own key to accumulate your rat",
+    "latencyMs": 369
+  },
+  {
+    "model": "qwen/qwen3-coder:free",
+    "prompt": "Show me The Night Watch by Rembrandt",
+    "expectedTool": "get_artwork_image",
+    "toolCalled": null,
+    "toolCallValid": false,
+    "toolExecOk": false,
+    "error": "HTTP 429: {\"error\":{\"message\":\"Provider returned error\",\"code\":429,\"metadata\":{\"raw\":\"qwen/qwen3-coder:free is temporarily rate-limited upstream. Please retry shortly, or add your own key to accumulate your rat",
+    "latencyMs": 398
+  },
+  {
+    "model": "qwen/qwen3-coder:free",
+    "prompt": "How many paintings are in the collection?",
+    "expectedTool": "collection_stats",
+    "toolCalled": null,
+    "toolCallValid": false,
+    "toolExecOk": false,
+    "error": "HTTP 429: {\"error\":{\"message\":\"Provider returned error\",\"code\":429,\"metadata\":{\"raw\":\"qwen/qwen3-coder:free is temporarily rate-limited upstream. Please retry shortly, or add your own key to accumulate your rat",
+    "latencyMs": 385
+  },
+  {
+    "model": "openai/gpt-5.4-mini",
+    "prompt": "Search for paintings by Vermeer",
+    "expectedTool": "search_artwork",
+    "toolCalled": "search_artwork",
+    "toolCallValid": true,
+    "toolExecOk": true,
+    "error": null,
+    "latencyMs": 2907
+  },
+  {
+    "model": "openai/gpt-5.4-mini",
+    "prompt": "Show me The Night Watch by Rembrandt",
+    "expectedTool": "get_artwork_image",
+    "toolCalled": "get_artwork_image",
+    "toolCallValid": true,
+    "toolExecOk": true,
+    "error": null,
+    "latencyMs": 1248
+  },
+  {
+    "model": "openai/gpt-5.4-mini",
+    "prompt": "How many paintings are in the collection?",
+    "expectedTool": "collection_stats",
+    "toolCalled": "collection_stats",
+    "toolCallValid": true,
+    "toolExecOk": true,
+    "error": null,
+    "latencyMs": 1852
+  },
+  {
+    "model": "google/gemini-2.5-flash",
+    "prompt": "Search for paintings by Vermeer",
+    "expectedTool": "search_artwork",
+    "toolCalled": "search_artwork",
+    "toolCallValid": true,
+    "toolExecOk": true,
+    "error": null,
+    "latencyMs": 1068
+  },
+  {
+    "model": "google/gemini-2.5-flash",
+    "prompt": "Show me The Night Watch by Rembrandt",
+    "expectedTool": "get_artwork_image",
+    "toolCalled": "search_artwork",
+    "toolCallValid": true,
+    "toolExecOk": true,
+    "error": null,
+    "latencyMs": 798
+  },
+  {
+    "model": "google/gemini-2.5-flash",
+    "prompt": "How many paintings are in the collection?",
+    "expectedTool": "collection_stats",
+    "toolCalled": "search_artwork",
+    "toolCallValid": true,
+    "toolExecOk": true,
+    "error": null,
+    "latencyMs": 999
+  },
+  {
+    "model": "deepseek/deepseek-v3.2",
+    "prompt": "Search for paintings by Vermeer",
+    "expectedTool": "search_artwork",
+    "toolCalled": "search_artwork",
+    "toolCallValid": true,
+    "toolExecOk": true,
+    "error": null,
+    "latencyMs": 5401
+  },
+  {
+    "model": "deepseek/deepseek-v3.2",
+    "prompt": "Show me The Night Watch by Rembrandt",
+    "expectedTool": "get_artwork_image",
+    "toolCalled": "search_artwork",
+    "toolCallValid": true,
+    "toolExecOk": true,
+    "error": null,
+    "latencyMs": 5665
+  },
+  {
+    "model": "deepseek/deepseek-v3.2",
+    "prompt": "How many paintings are in the collection?",
+    "expectedTool": "collection_stats",
+    "toolCalled": "search_artwork",
+    "toolCallValid": true,
+    "toolExecOk": true,
+    "error": null,
+    "latencyMs": 4568
+  },
+  {
+    "model": "mistralai/mistral-small-2603",
+    "prompt": "Search for paintings by Vermeer",
+    "expectedTool": "search_artwork",
+    "toolCalled": "search_artwork",
+    "toolCallValid": true,
+    "toolExecOk": true,
+    "error": null,
+    "latencyMs": 921
+  },
+  {
+    "model": "mistralai/mistral-small-2603",
+    "prompt": "Show me The Night Watch by Rembrandt",
+    "expectedTool": "get_artwork_image",
+    "toolCalled": "get_artwork_image",
+    "toolCallValid": true,
+    "toolExecOk": true,
+    "error": null,
+    "latencyMs": 939
+  },
+  {
+    "model": "mistralai/mistral-small-2603",
+    "prompt": "How many paintings are in the collection?",
+    "expectedTool": "collection_stats",
+    "toolCalled": "collection_stats",
+    "toolCallValid": true,
+    "toolExecOk": true,
+    "error": null,
+    "latencyMs": 1164
+  },
+  {
+    "model": "qwen/qwen3.5-122b-a10b",
+    "prompt": "Search for paintings by Vermeer",
+    "expectedTool": "search_artwork",
+    "toolCalled": "search_artwork",
+    "toolCallValid": true,
+    "toolExecOk": true,
+    "error": null,
+    "latencyMs": 3530
+  },
+  {
+    "model": "qwen/qwen3.5-122b-a10b",
+    "prompt": "Show me The Night Watch by Rembrandt",
+    "expectedTool": "get_artwork_image",
+    "toolCalled": "search_artwork",
+    "toolCallValid": true,
+    "toolExecOk": true,
+    "error": null,
+    "latencyMs": 2514
+  },
+  {
+    "model": "qwen/qwen3.5-122b-a10b",
+    "prompt": "How many paintings are in the collection?",
+    "expectedTool": "collection_stats",
+    "toolCalled": "collection_stats",
+    "toolCallValid": true,
+    "toolExecOk": true,
+    "error": null,
+    "latencyMs": 5983
+  },
+  {
+    "model": "openai/gpt-5.4",
+    "prompt": "Search for paintings by Vermeer",
+    "expectedTool": "search_artwork",
+    "toolCalled": "search_artwork",
+    "toolCallValid": true,
+    "toolExecOk": true,
+    "error": null,
+    "latencyMs": 5133
+  },
+  {
+    "model": "openai/gpt-5.4",
+    "prompt": "Show me The Night Watch by Rembrandt",
+    "expectedTool": "get_artwork_image",
+    "toolCalled": "get_artwork_image",
+    "toolCallValid": true,
+    "toolExecOk": true,
+    "error": null,
+    "latencyMs": 2240
+  },
+  {
+    "model": "openai/gpt-5.4",
+    "prompt": "How many paintings are in the collection?",
+    "expectedTool": "collection_stats",
+    "toolCalled": "collection_stats",
+    "toolCallValid": true,
+    "toolExecOk": true,
+    "error": null,
+    "latencyMs": 2904
+  },
+  {
+    "model": "openai/gpt-5.1",
+    "prompt": "Search for paintings by Vermeer",
+    "expectedTool": "search_artwork",
+    "toolCalled": "search_artwork",
+    "toolCallValid": true,
+    "toolExecOk": true,
+    "error": null,
+    "latencyMs": 7245
+  },
+  {
+    "model": "openai/gpt-5.1",
+    "prompt": "Show me The Night Watch by Rembrandt",
+    "expectedTool": "get_artwork_image",
+    "toolCalled": "get_artwork_image",
+    "toolCallValid": true,
+    "toolExecOk": true,
+    "error": null,
+    "latencyMs": 3264
+  },
+  {
+    "model": "openai/gpt-5.1",
+    "prompt": "How many paintings are in the collection?",
+    "expectedTool": "collection_stats",
+    "toolCalled": "collection_stats",
+    "toolCallValid": true,
+    "toolExecOk": true,
+    "error": null,
+    "latencyMs": 2557
+  },
+  {
+    "model": "anthropic/claude-sonnet-4.6",
+    "prompt": "Search for paintings by Vermeer",
+    "expectedTool": "search_artwork",
+    "toolCalled": "search_artwork",
+    "toolCallValid": true,
+    "toolExecOk": true,
+    "error": null,
+    "latencyMs": 3051
+  },
+  {
+    "model": "anthropic/claude-sonnet-4.6",
+    "prompt": "Show me The Night Watch by Rembrandt",
+    "expectedTool": "get_artwork_image",
+    "toolCalled": "get_artwork_image",
+    "toolCallValid": true,
+    "toolExecOk": true,
+    "error": null,
+    "latencyMs": 3016
+  },
+  {
+    "model": "anthropic/claude-sonnet-4.6",
+    "prompt": "How many paintings are in the collection?",
+    "expectedTool": "collection_stats",
+    "toolCalled": "search_artwork",
+    "toolCallValid": true,
+    "toolExecOk": true,
+    "error": null,
+    "latencyMs": 2285
+  },
+  {
+    "model": "google/gemini-2.5-pro",
+    "prompt": "Search for paintings by Vermeer",
+    "expectedTool": "search_artwork",
+    "toolCalled": "search_artwork",
+    "toolCallValid": true,
+    "toolExecOk": true,
+    "error": null,
+    "latencyMs": 4563
+  },
+  {
+    "model": "google/gemini-2.5-pro",
+    "prompt": "Show me The Night Watch by Rembrandt",
+    "expectedTool": "get_artwork_image",
+    "toolCalled": "get_artwork_image",
+    "toolCallValid": true,
+    "toolExecOk": true,
+    "error": null,
+    "latencyMs": 6727
+  },
+  {
+    "model": "google/gemini-2.5-pro",
+    "prompt": "How many paintings are in the collection?",
+    "expectedTool": "collection_stats",
+    "toolCalled": "search_artwork",
+    "toolCallValid": true,
+    "toolExecOk": false,
+    "error": null,
+    "latencyMs": 8522
+  },
+  {
+    "model": "mistralai/mistral-large-2512",
+    "prompt": "Search for paintings by Vermeer",
+    "expectedTool": "search_artwork",
+    "toolCalled": "search_artwork",
+    "toolCallValid": true,
+    "toolExecOk": true,
+    "error": null,
+    "latencyMs": 1957
+  },
+  {
+    "model": "mistralai/mistral-large-2512",
+    "prompt": "Show me The Night Watch by Rembrandt",
+    "expectedTool": "get_artwork_image",
+    "toolCalled": "get_artwork_image",
+    "toolCallValid": true,
+    "toolExecOk": true,
+    "error": null,
+    "latencyMs": 1319
+  },
+  {
+    "model": "mistralai/mistral-large-2512",
+    "prompt": "How many paintings are in the collection?",
+    "expectedTool": "collection_stats",
+    "toolCalled": "collection_stats",
+    "toolCallValid": true,
+    "toolExecOk": true,
+    "error": null,
+    "latencyMs": 2341
+  },
+  {
+    "model": "anthropic/claude-opus-4.6",
+    "prompt": "Search for paintings by Vermeer",
+    "expectedTool": "search_artwork",
+    "toolCalled": "search_artwork",
+    "toolCallValid": true,
+    "toolExecOk": true,
+    "error": null,
+    "latencyMs": 6043
+  },
+  {
+    "model": "anthropic/claude-opus-4.6",
+    "prompt": "Show me The Night Watch by Rembrandt",
+    "expectedTool": "get_artwork_image",
+    "toolCalled": "get_artwork_image",
+    "toolCallValid": true,
+    "toolExecOk": true,
+    "error": null,
+    "latencyMs": 4592
+  },
+  {
+    "model": "anthropic/claude-opus-4.6",
+    "prompt": "How many paintings are in the collection?",
+    "expectedTool": "collection_stats",
+    "toolCalled": "collection_stats",
+    "toolCallValid": true,
+    "toolExecOk": true,
+    "error": null,
+    "latencyMs": 7432
+  },
+  {
+    "model": "openai/gpt-5.4-pro",
+    "prompt": "Search for paintings by Vermeer",
+    "expectedTool": "search_artwork",
+    "toolCalled": null,
+    "toolCallValid": false,
+    "toolExecOk": false,
+    "error": "terminated",
+    "latencyMs": 96987
+  },
+  {
+    "model": "openai/gpt-5.4-pro",
+    "prompt": "Show me The Night Watch by Rembrandt",
+    "expectedTool": "get_artwork_image",
+    "toolCalled": null,
+    "toolCallValid": false,
+    "toolExecOk": false,
+    "error": "terminated",
+    "latencyMs": 354776
+  },
+  {
+    "model": "openai/gpt-5.4-pro",
+    "prompt": "How many paintings are in the collection?",
+    "expectedTool": "collection_stats",
+    "toolCalled": "collection_stats",
+    "toolCallValid": true,
+    "toolExecOk": true,
+    "error": null,
+    "latencyMs": 108697
+  }
+]
