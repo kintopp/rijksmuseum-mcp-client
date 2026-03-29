@@ -36,6 +36,7 @@ Search and discovery workflow:
 - For queries where paintings are the expected result type, always combine semantic_search with a follow-up search_artwork(type: 'painting', subject: ...) — paintings are underrepresented in semantic results.
 - Use get_artwork_details for full metadata on a specific work after finding it via search.
 - Use collection_stats for distributional queries (e.g. "how many paintings?", "top depicted persons") — it answers in one call what would otherwise require loops.
+- For decade or century breakdowns, use dateMatch: 'midpoint' to count each artwork exactly once (assigns by midpoint of its date range). The default 'overlaps' double-counts broadly-dated objects across bins.
 
 Viewing artworks:
 - Call get_artwork_image to display an artwork in the viewer — it returns a IIIF URL that opens automatically. Use this whenever the user wants to see a work.
