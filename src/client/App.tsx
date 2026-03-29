@@ -9,7 +9,7 @@ export function App() {
   const viewerStore = useViewerStoreProvider();
   const [password, setPassword] = useState(() => localStorage.getItem('access-password') ?? '');
   const [model, setModel] = useState(() => localStorage.getItem('openrouter-model') ?? DEFAULT_MODEL);
-  const [skillContext, setSkillContext] = useState(() => localStorage.getItem('skill-context') === 'true');
+  const [skillContext, setSkillContext] = useState(() => localStorage.getItem('skill-context') !== 'false');
 
   const handlePasswordChange = (pw: string) => {
     setPassword(pw);
