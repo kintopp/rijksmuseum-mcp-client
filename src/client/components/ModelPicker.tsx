@@ -35,7 +35,6 @@ export function ModelPicker({ password, model, onPasswordChange, onModelChange }
           </span>
         )}
       </div>
-      {/* Model dropdown disabled — single model (Mistral Large 3) hardcoded for now
       <div className="model-picker-row">
         <select
           value={model}
@@ -49,7 +48,6 @@ export function ModelPicker({ password, model, onPasswordChange, onModelChange }
           ))}
         </select>
       </div>
-      */}
     </div>
   );
 }
